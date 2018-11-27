@@ -87,7 +87,7 @@ terria.start({
         var globalBaseMaps = createGlobalBaseMapOptions(terria, terria.configParameters.bingMapsKey);
 
         var allBaseMaps = usBaseMaps.concat(globalBaseMaps);
-        selectBaseMap(terria, allBaseMaps, 'USA Topography', false);
+        selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', false);
 
         // Show a modal disclaimer before user can do anything else.
         if (defined(terria.configParameters.globalDisclaimer)) {
