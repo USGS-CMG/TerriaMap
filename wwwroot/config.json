@@ -35,6 +35,26 @@
         ],
         supportEmail: "zdefne@usgs.gov",
         proj4ServiceBaseUrl: "proj4def/",
-        //feedbackUrl: "feedback",
+        // Or this
+        feedbackUrl: "feedback",
+
+        // Default mobile viewer mode when loading the map for the first time on mobile platforms.
+        // Options are: "3DTerrain", "3DSmooth", "2D"
+        mobileDefaultViewerMode: "2d",
+        // Enable experimental features, since its nice to have the bleeding edge.
+        // Disable it if things go wrong with the experimental features or your users aren't robust to features which might change or disapear completly.
+        "experimentalFeatures": true,
+
+        // To override TerriaJS's region mapping file with a local one.
+        // regionMappingDefinitionsUrl: "data/regionMapping.json"
+
+        // True to display welcome message on startup.
+        // "showWelcomeMessage": false,
+
+        // True to display in-app guides.
+        // "showInAppGuides": false,
+
+        // True to display new feature popups.
+        // "showFeaturePrompts": false,
     }
 }
