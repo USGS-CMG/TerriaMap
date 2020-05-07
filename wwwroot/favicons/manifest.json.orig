@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
  "name": "TerriaJS",
+=======
+ "name": "USGS NationalMap",
+>>>>>>> d8f4b791ac658127e0736a4250daede2fd8b4afe
  "start_url": "/",
  "display": "standalone",
  "icons": [

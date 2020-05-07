@@ -56,6 +56,9 @@
 
         // True to display new feature popups.
         // "showFeaturePrompts": false,
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8f4b791ac658127e0736a4250daede2fd8b4afe
     }
 }
