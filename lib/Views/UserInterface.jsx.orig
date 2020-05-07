@@ -48,8 +48,8 @@ export default function UserInterface(props) {
           />
         </If>
       </ExperimentalMenu>
-    </StandardUserInterface>
-  );
+        </StandardUserInterface>
+    );
 }
 
 UserInterface.propTypes = {

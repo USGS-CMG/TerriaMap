@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+* Fix manifest.json start_url
+
+### Next Release
+
+* Fix the hot reload script.
+
 ### 2017-XX-XX
 
 * Use `gtar` when building `make-package` on OSX to create GNU tar compatible tarballs.
