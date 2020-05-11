@@ -1,0 +1,63 @@
+{
+    "port": 3001,
+
+"blacklistedAddresses": [
+    // loopback addresses
+    "127.0.0.0/8",
+    "::1/128",
+    // link local addresses
+    "169.254.0.0/16",
+    "fe80::/10",
+    // private network addresses
+    "10.0.0.0/8",
+    "172.16.0.0/12",
+    "192.168.0.0/16",
+    "fc00::/7",
+    // other
+    "0.0.0.0/8",
+    "100.64.0.0/10",
+    "192.0.0.0/24",
+    "192.0.2.0/24",
+    "198.18.0.0/15",
+    "192.88.99.0/24",
+    "198.51.100.0/24",
+    "203.0.113.0/24",
+    "224.0.0.0/4",
+    "240.0.0.0/4",
+    "255.255.255.255/32",
+    "::/128",
+    "2001:db8::/32",
+    "ff00::/8"
+],
+    "allowProxyFor" : [
+        "gov",
+        "org",
+        "edu",
+        "us",
+        "geocommunicator.gov",
+        "arcgisonline.com",
+        "githubusercontent.com",
+        "esri.com",
+        "axiomalaska.com",
+        "axds.co",
+        "ingv.it",
+        "nicta.com.au",
+        "gov.au",
+        "gov.uk",
+        "gov.nz",
+        "csiro.au",
+        "arcgis.com",
+        "argo.jcommops.org",
+        "www.abc.net.au",
+        "geoserver.aurin.org.au",
+        "mapsengine.google.com",
+        "s3-ap-southeast-2.amazonaws.com",
+        "adelaidecitycouncil.com",
+        "www.dptiapps.com.au",
+        "geoserver-123.aodn.org.au",
+        "geoserver.imos.org.au",
+        "nci.org.au",
+        "static.nationalmap.nicta.com.au"
+    ]
+}
+
