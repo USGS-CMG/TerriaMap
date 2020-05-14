@@ -87,7 +87,7 @@ module.exports = terria.start({
         var globalBaseMaps = createGlobalBaseMapOptions(terria, terria.configParameters.bingMapsKey);
 
         var allBaseMaps = usBaseMaps.concat(globalBaseMaps);
-        selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', false);
+        selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial', false);
 
         // Show a modal disclaimer before user can do anything else.
         if (defined(terria.configParameters.globalDisclaimer)) {
