@@ -142,6 +142,8 @@ gulp.task('make-package', function(done) {
     var spawnSync = require('child_process').spawnSync;
     var json5 = require('json5');
 
+    fs.copySync(require.resolve('nationalmap-catalog/build/abs-itt.json'), 'wwwroot/init/abs-itt.json');
+
     var packageName = argv.packageName || (process.env.npm_package_name + '-' + spawnSync('git', ['describe']).stdout.toString().trim());
     var packagesDir = path.join('.', 'deploy', 'packages');
 
@@ -249,8 +251,10 @@ function mergeConfigs(original, override) {
  */
 gulp.task('render-datasource-templates', function(done) {
     var ejs = require('ejs');
+    var fs = require('fs-extra');
     var JSON5 = require('json5');
     var templateDir = 'datasources';
+
     try {
         fs.accessSync(templateDir);
     } catch (e) {

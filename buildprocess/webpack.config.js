@@ -17,6 +17,8 @@ module.exports = function(devMode, hot) {
             sourcePrefix: '', // to avoid breaking multi-line string literals by inserting extra tabs.
             globalObject: '(self || window)' // to avoid breaking in web worker (https://github.com/webpack/webpack/issues/6642)
         },
+        // Firefox and Edge's debuggers don't like cheap-inline-source-map.
+        // If you're having debugger trouble, try switching to 'source-map' instead.
         devtool: devMode ? 'cheap-inline-source-map' : 'source-map',
         module: {
             rules: [

@@ -51,42 +51,33 @@ function RelatedMaps(props) {
       </div>
 
       <div className={classNames(PanelStyles.section, Styles.section)}>
-        <a target="_blank" href="http://nationalmap.gov.au/northernaustralia/">
+        <a target="_blank" href="http://nationalmap.gov.au/investormap/">
           <img
             className={Styles.image}
-            src={require("../../wwwroot/images/northernaustralia.jpg")}
-            alt="Northern Australia"
+            src={require("../../wwwroot/images/investormap.jpg")}
+            alt="Investor Map"
           />
         </a>
 
         <a
           target="_blank"
           className={Styles.link}
-          href="http://nationalmap.gov.au/northernaustralia/"
+          href="http://nationalmap.gov.au/investormap/"
         >
-          Northern Australia
+          Investor Map
         </a>
 
         <p>
-          The Northern Australia NationalMap forms part of the Government's
-          commitment to developing northern Australia by providing easy access
-          to authoritative and other spatial data on northern Australia to
-          governments, business and the public. More information on the
-          Government's White Paper on Developing Northern Australia is available
-          here:{" "}
-          <a
-            target="_blank"
-            className={Styles.link}
-            href="https://northernaustralia.dpmc.gov.au"
-          >
-            https://northernaustralia.dpmc.gov.au
-          </a>
-          .
+          The Investor Map is a platform for accessing over 900 datasets to
+          assist investors with assessment of opportunities in Australia,
+          especially in mining, tourism and agriculture. The project is a
+          collaboration between Austrade, Geoscience Australia and Data61
+          Terria.
         </p>
       </div>
 
       <div className={classNames(PanelStyles.section, Styles.section)}>
-        <a target="_blank" href="http://neiiviewer.nicta.com.au">
+        <a target="_blank" href="http://www.neii.gov.au/viewer/">
           <img
             className={Styles.image}
             src={require("../../wwwroot/images/neii.jpg")}
@@ -138,6 +129,35 @@ function RelatedMaps(props) {
         <p>
           AURIN Map provides access to datasets on urban infrastructure for
           urban researchers, policy and decision makers.
+        </p>
+      </div>
+
+      <div className={classNames(PanelStyles.section, Styles.section)}>
+        <a target="_blank" href="https://soe.terria.io">
+          <img
+            className={Styles.image}
+            src={require("../../wwwroot/images/soe.jpg")}
+            alt="State of the Environment Map"
+          />
+        </a>
+
+        <a target="_blank" className={Styles.link} href="https://soe.terria.io">
+          State of the Environment Map
+        </a>
+
+        <p>
+          The Australia state of the environment 2016 report has been prepared
+          by independent experts using a range of best available information to
+          support assessments of environmental condition, pressures, management
+          effectiveness, resilience, risks and outlooks. The full report is
+          available from{" "}
+          <a
+            target="_blank"
+            className={Styles.link}
+            href="https://soe.environment.gov.au/"
+          >
+            https://soe.environment.gov.au/
+          </a>
         </p>
       </div>
     </MenuPanel>

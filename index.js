@@ -9,6 +9,7 @@ var terriaOptions = {
 // checkBrowserCompatibility('ui');
 import GoogleAnalytics from 'terriajs/lib/Core/GoogleAnalytics';
 import ShareDataService from 'terriajs/lib/Models/ShareDataService';
+import isCommonMobilePlatform from 'terriajs/lib/Core/isCommonMobilePlatform';
 import raiseErrorToUser from 'terriajs/lib/Models/raiseErrorToUser';
 import registerAnalytics from 'terriajs/lib/Models/registerAnalytics';
 import registerCatalogMembers from 'terriajs/lib/Models/registerCatalogMembers';
@@ -22,6 +23,7 @@ import GazetteerSearchProviderViewModel from 'terriajs/lib/ViewModels/GazetteerS
 import GnafSearchProviderViewModel from 'terriajs/lib/ViewModels/GnafSearchProviderViewModel.js';
 import defined from 'terriajs-cesium/Source/Core/defined';
 import render from './lib/Views/render';
+import GnafAddressGeocoder from 'terriajs/lib/Map/GnafAddressGeocoder.js';
 
 // Register all types of catalog members in the core TerriaJS.  If you only want to register a subset of them
 // (i.e. to reduce the size of your application if you don't actually use them all), feel free to copy a subset of
@@ -30,6 +32,7 @@ registerCatalogMembers();
 registerAnalytics();
 
 terriaOptions.analytics = new GoogleAnalytics();
+terriaOptions.batchGeocoder = new GnafAddressGeocoder();
 
 // Construct the TerriaJS application, arrange to show errors to the user, and start it up.
 var terria = new Terria(terriaOptions);
@@ -48,16 +51,44 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // If we're running in dev mode, disable the built style sheet as we'll be using the webpack style loader.
-// Note that if the first stylesheet stops being nationalmap.css then this will have to change.
+// Note that if the first stylesheet stops being TerriaMap.css then this will have to change.
 if (process.env.NODE_ENV !== "production" && module.hot) {
     document.styleSheets[0].disabled = true;
 }
+
+terria.filterStartDataCallback = function(startData) {
+    if (startData.initSources) {
+        // Do not allow share URLs to load old versions of the catalog that
+        // are included in the initSources.
+        startData.initSources = startData.initSources.filter(function(initSource) {
+            if (typeof initSource === 'string') {
+                return initSource.indexOf('static.nationalmap.nicta.com.au/init') < 0 &&
+                    initSource.indexOf('init/nm.json') < 0;
+            }
+            return true;
+        });
+
+        // Backward compatibility for old ABS-ITT catalog items.  Go load an annex catalog that contains them.
+        const containsAbsIttItems = startData.initSources.some(function(initSource) {
+            return initSource.sharedCatalogMembers && Object.keys(initSource.sharedCatalogMembers).some(shareKey => initSource.sharedCatalogMembers[shareKey].type === 'abs-itt');
+        });
+
+        if (containsAbsIttItems) {
+            terria.error.raiseEvent({
+                title: 'Warning',
+                message: 'The share link you just visited is using an old interface to the ABS census data that will stop working in a future version of NationalMap.  If this is your link, please update it to use the new ABS catalog items in the National Datasets section.'
+            });
+            startData.initSources.unshift('init/abs-itt.json');
+        }
+    }
+};
 
 module.exports = terria.start({
     // If you don't want the user to be able to control catalog loading via the URL, remove the applicationUrl property below
     // as well as the call to "updateApplicationOnHashChange" further down.
     applicationUrl: window.location,
     configUrl: 'config.json',
+    defaultTo2D: isCommonMobilePlatform(),
     shareDataService: new ShareDataService({
         terria: terria
     })
@@ -88,6 +119,10 @@ module.exports = terria.start({
 
         var allBaseMaps = usBaseMaps.concat(globalBaseMaps);
         selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial', false);
+
+        if (terria.configParameters.openAddData) {
+            viewState.openAddData();
+        }
 
         // Show a modal disclaimer before user can do anything else.
         if (defined(terria.configParameters.globalDisclaimer)) {
